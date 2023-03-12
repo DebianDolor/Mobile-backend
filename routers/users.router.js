@@ -22,7 +22,7 @@ router.get(
 );
 
 router.get(
-  "/wishlist/:userID",
+  "/wishlist",
   [authJwt.verifyToken, authJwt.checkTokenBlacklist],
   UsersController.getWishlist
 );

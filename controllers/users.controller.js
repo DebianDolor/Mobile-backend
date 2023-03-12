@@ -98,8 +98,8 @@ exports.getBookingHistory = async (req, res) => {
 exports.getWishlist = async (req, res) => {
   try {
     const [wishlist] = await sequelize.query(
-      "select wishlist from users where userID = :userID",
-      { replacements: { userID: req.params.userID } }
+      "select wishlist from users where email = :email",
+      { replacements: { email: req.body.email } }
     );
     res.status(200).json(wishlist);
   } catch (err) {
