@@ -20,5 +20,5 @@ router.get(
   [authJwt.verifyToken, authJwt.checkTokenBlacklist],
   BookingsController.choosenSeat
 );
-router.get("/getInfoBooking", BookingsController.getInfoBooking);
+
 module.exports = router;

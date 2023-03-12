@@ -8,8 +8,6 @@ router.get(
   [authJwt.verifyToken, authJwt.checkTokenBlacklist],
   MoviesController.findAll
 );
-router.get("/getShowtime/:movieID", MoviesController.getShowtime);
-router.get("/getShowtime/:category", MoviesController.getCategory);
 
 router.get(
   "/new",

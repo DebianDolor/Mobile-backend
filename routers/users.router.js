@@ -32,7 +32,5 @@ router.post(
   [authJwt.verifyToken, authJwt.checkTokenBlacklist],
   UsersController.changePassword
 );
-router.get("/findOne/:userID", UsersController.findOne);
-router.get("/getBookings/:userID", UsersController.getBookings);
 
 module.exports = router;

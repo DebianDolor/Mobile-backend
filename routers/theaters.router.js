@@ -9,7 +9,5 @@ router.get(
   [authJwt.verifyToken, authJwt.checkTokenBlacklist],
   TheatersController.findAll
 );
-router.get("/getTheater/:theaterID", TheatersController.findOne);
-router.get("/getShowtime/:theaterID", TheatersController.getShowtime);
-router.get("/getSeats/:theaterID", TheatersController.getSeats);
+
 module.exports = router;

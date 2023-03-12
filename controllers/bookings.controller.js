@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 const { BookingsModel, UsersModel } = require("../models/index");
-=======
-const { BookingsModel } = require("../models/index");
->>>>>>> 746093f394bd01ce099462a5ba572dd0f55f1afd
 const sequelize = require("../config/db.config");
 
 exports.createBooking = async (req, res) => {
@@ -109,58 +105,5 @@ exports.choosenSeat = async (req, res) => {
     res.status(200).json(choosenSeats);
   } catch (err) {
     res.status(500).json(err);
-  }
-};
-
-// ch test
-exports.createBooking = async (req, res) => {
-  if (!req.body.bookingID) {
-    res.status(400).send({
-      message: "Content can not be empty!",
-    });
-    return;
-  }
-  const booking = {
-    bookingID: req.body.productID,
-    showtimeID: req.body.showtimeID,
-    seatID: req.body.seatID,
-    userID: req.body.userID,
-    price: req.body.price,
-    discountID: req.body.discountID,
-  };
-
-  BookingsModel.create(booking)
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err,
-      });
-    });
-};
-
-exports.getInfoBooking = async (req, res) => {
-  try {
-    const [booking] = await sequelize.query(
-      "select b.bookingID, users.username, b.price,\
-          p.payment_method, p.received,\
-          theaters.theater_name, theaters.address as theater_address,\
-          seats.theaterID, seats.row_number, seats.seat_number,\
-          movies.title,\
-          showtimes.date,\
-          showtimes.time\
-        from bookings b\
-        join users on b.userID = users.userID\
-        join seats on b.seatID = seats.seatID\
-        join theaters on seats.theaterID = theaters.theaterID\
-        join showtimes on b.showtimeID = showtimes.showtimeID\
-        join movies on movies.movieID = showtimes.movieID\
-        join discount on b.discountID = discount.discountID\
-        join payment p on b.bookingID = p.bookingID"
-    );
-    res.json(booking);
-  } catch (err) {
-    console.log(err);
   }
 };

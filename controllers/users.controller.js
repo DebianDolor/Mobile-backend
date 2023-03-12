@@ -1,12 +1,7 @@
-<<<<<<< HEAD
 const { UsersModel, TokenModel } = require("../models/index");
 const sequelize = require("../config/db.config");
 const bcrypt = require("bcrypt");
 const crypto = require("crypto");
-=======
-const { UsersModel } = require("../models/index");
-const { BookingsModel } = require("../models/index");
->>>>>>> 746093f394bd01ce099462a5ba572dd0f55f1afd
 
 exports.addCreditCard = async (req, res) => {
   UsersModel.update(
@@ -109,30 +104,5 @@ exports.getWishlist = async (req, res) => {
     res.status(200).json(wishlist);
   } catch (err) {
     res.status(500).json(err);
-  }
-};
-
-exports.findOne = async (req, res) => {
-  try {
-    const user = await UsersModel.findByPk(req.params.userID);
-    res.json(user);
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-exports.getBookings = async (req, res) => {
-  try {
-    const user = await UsersModel.findOne({
-      where: { userID: req.params.userID },
-      include: [
-        {
-          model: BookingsModel,
-        },
-      ],
-    });
-    res.json(user);
-  } catch (err) {
-    console.log(err);
   }
 };
